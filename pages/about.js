@@ -11,9 +11,9 @@ Page.getInitialProps = async () => {
 
     return {
         relayResponse,
-        // env: env.getStore()
-        //     .getSource()
-        //     .toJSON(),
+        env: env.getStore()
+            .getSource()
+            .toJSON(),
     };
 };
 
