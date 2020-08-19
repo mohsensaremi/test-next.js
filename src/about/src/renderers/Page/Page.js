@@ -13,8 +13,7 @@ const Page = (props) => {
     return (
         <AppRelayQueryRenderer
             query={query}
-            render={(xx) => {
-                const {props, error, retry} = xx;
+            render={({props, error}) => {
                 if (error) {
                     return (
                         <div>
@@ -22,7 +21,6 @@ const Page = (props) => {
                         </div>
                     );
                 } else if (props) {
-                    console.log("propsprops", props.layout.images);
                     return (
                         <PageContainer
                             {...otherProps}

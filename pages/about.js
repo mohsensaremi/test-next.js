@@ -1,20 +1,13 @@
 import Page from '../src/about/src/renderers/Page';
 import query from '../src/about/src/renderers/Page/AboutPageQuery';
-import {relaySSRLoad} from "../src/relay/relaySSRLoad";
+import {getRelayInitialProps} from "../src/relay/getRelayInitialProps";
 
 Page.getInitialProps = async () => {
-    const {env, relayResponse} = await relaySSRLoad([
+    return await getRelayInitialProps([
         {
             query,
         }
     ]);
-
-    return {
-        relayResponse,
-        env: env.getStore()
-            .getSource()
-            .toJSON(),
-    };
 };
 
 export default Page;

@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import initEnvironment from "./initEnvironment";
-import {relayEnvironmentSSR} from "./relaySSRLoad";
+import {relayEnvironmentSSR} from "./getRelayInitialProps";
 
 export const AppRelayContext = React.createContext({});
 
@@ -15,7 +15,7 @@ export const AppRelayContextProvider = (props) => {
             environment: typeof document === "undefined"
                 ? relayEnvironmentSSR
                 : initEnvironment(
-                    JSON.parse(document.getElementById("__NEXT_DATA__").innerHTML).props.pageProps.env
+                    JSON.parse(document.getElementById("__NEXT_DATA__").innerHTML).props.pageProps.relayStore
                 ),
         }
     }, []);
