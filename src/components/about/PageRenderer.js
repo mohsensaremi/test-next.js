@@ -1,9 +1,9 @@
 import React from 'react';
 import query from './AboutPageQuery';
-import PageContainer from '../../containers/Page';
-import {AppRelayQueryRenderer} from "../../../../relay/AppRelayQueryRenderer";
+import PageContainer from './Page';
+import {AppRelayQueryRenderer} from "../../relay/AppRelayQueryRenderer";
 
-const Page = (props) => {
+const PageRenderer = (props) => {
 
     const {
         ...otherProps
@@ -40,4 +40,4 @@ const Page = (props) => {
     );
 };
 
-export default Page;
+export default PageRenderer;

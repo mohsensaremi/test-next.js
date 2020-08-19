@@ -1,8 +1,8 @@
-import Page from '../src/about/src/renderers/Page';
-import query from '../src/about/src/renderers/Page/AboutPageQuery';
+import PageRenderer from '../src/components/about/PageRenderer';
+import query from '../src/components/about/AboutPageQuery';
 import {getRelayInitialProps} from "../src/relay/getRelayInitialProps";
 
-Page.getInitialProps = async () => {
+PageRenderer.getInitialProps = async () => {
     return await getRelayInitialProps([
         {
             query,
@@ -10,4 +10,4 @@ Page.getInitialProps = async () => {
     ]);
 };
 
-export default Page;
+export default PageRenderer;
