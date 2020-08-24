@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {QueryRenderer, ReactRelayContext} from 'react-relay';
 import {getEnvironment} from "./environment";
 import {relayFetchedQueries} from "./getRelayInitialProps";
