@@ -10,15 +10,19 @@ export const AppRelayContextProvider = (props) => {
         children
     } = props;
 
+    const encodedStore = typeof document === "undefined"
+        ? undefined
+        : JSON.parse(document.getElementById("__NEXT_DATA__").innerHTML).props.pageProps.relayStore
+
+    console.log("AppRelayContextProvider", encodedStore, typeof document === "undefined" ? "undefined" : document.getElementById("__NEXT_DATA__").innerHTML);
+
     const state = useMemo(() => {
         return {
             environment: typeof document === "undefined"
                 ? relayEnvironmentSSR
-                : initEnvironment(
-                    JSON.parse(document.getElementById("__NEXT_DATA__").innerHTML).props.pageProps.relayStore
-                ),
+                : initEnvironment(encodedStore),
         }
-    }, []);
+    }, [encodedStore]);
 
     return (
         <AppRelayContext.Provider value={state}>

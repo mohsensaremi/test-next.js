@@ -8,28 +8,32 @@ export const AppRelayQueryRenderer = (props) => {
 
     const {environment} = useContext(AppRelayContext);
 
-    const query = getRequest(props.query);
+    if (relayFetchedQueries.find(x => x === props.query.params.cacheID)) {
 
-    if (query.params.operationKind !== 'query') {
-        throw new Error('fetchQuery: Expected query operation');
-    }
+        const query = getRequest(props.query);
+        if (query.params.operationKind !== 'query') {
+            throw new Error('fetchQuery: Expected query operation');
+        }
+        const operation = createOperationDescriptor(query, props.variables || {});
+        const rendererProps = environment.lookup(operation.fragment).data;
 
-    const operation = createOperationDescriptor(query, props.variables || {});
-
-    if (relayFetchedQueries.find(x => x === query.params.cacheID)) {
-        return (
-            <ReactRelayContext.Provider
-                value={{environment, variables: {}}}
-            >
-                {
-                    props.render({
-                        error: null,
-                        retry: null,
-                        props: environment.lookup(operation.fragment).data,
-                    })
-                }
-            </ReactRelayContext.Provider>
-        );
+        console.log("operation", operation);
+        console.log("rendererPropsrendererProps", rendererProps, environment.lookup(operation.fragment));
+        if (rendererProps) {
+            return (
+                <ReactRelayContext.Provider
+                    value={{environment, variables: {}}}
+                >
+                    {
+                        props.render({
+                            error: null,
+                            retry: null,
+                            props: rendererProps,
+                        })
+                    }
+                </ReactRelayContext.Provider>
+            );
+        }
     }
 
     return (

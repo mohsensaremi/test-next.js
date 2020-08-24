@@ -8,7 +8,7 @@ const Page = (props) => {
 
     return (
         <div>
-            {`DATA ${JSON.stringify(data)}`}
+            {`DATAA ${JSON.stringify(data)}`}
         </div>
     );
 };

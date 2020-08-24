@@ -16,15 +16,22 @@ export const fetchFn = (operation, variables) => {
         body: JSON.stringify(body),
     }).then(response => {
         return response.json()
-    });
+    }).then(res => new Promise(resolve => {
+        setTimeout(() => resolve(res), 3000);
+    }));
 };
 
-
+let env = null
 export default function initEnvironment(records = {}) {
+    if (process.browser && env) {
+        return env;
+    }
     const store = new Store(new RecordSource(records), {});
     const network = Network.create(fetchFn);
-    return new Environment({
+    env = new Environment({
         network,
         store
     });
+
+    return env;
 }
