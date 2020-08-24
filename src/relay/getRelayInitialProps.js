@@ -1,5 +1,5 @@
-import initEnvironment from "./initEnvironment";
 import {fetchQuery} from 'react-relay';
+import {getEnvironment} from "./environment";
 
 export let relayFetchedQueries = typeof document === "undefined"
     ? []
@@ -9,7 +9,7 @@ export let relayEnvironmentSSR = null;
 
 const begin = () => {
     relayFetchedQueries = [];
-    relayEnvironmentSSR = initEnvironment();
+    relayEnvironmentSSR = getEnvironment(true);
 };
 
 export const getRelayInitialProps = async (requests) => {

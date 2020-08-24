@@ -15,12 +15,7 @@ export type AboutPageQueryResponse = {|
     +images: $ReadOnlyArray<?{|
       +url: string,
       +$fragmentRefs: Page_data$ref,
-    |}>,
-    +seoBoxes: ?$ReadOnlyArray<?{|
-      +id: string,
-      +title: ?string,
-      +url: ?string,
-    |}>,
+    |}>
   |}
 |};
 export type AboutPageQuery = {|
@@ -37,11 +32,6 @@ query AboutPageQuery {
       ...Page_data
       url
       id
-    }
-    seoBoxes {
-      id
-      title
-      url
     }
     id
   }
@@ -75,26 +65,6 @@ v2 = {
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
-},
-v3 = {
-  "alias": null,
-  "args": null,
-  "concreteType": "PageLayoutSeoBox",
-  "kind": "LinkedField",
-  "name": "seoBoxes",
-  "plural": true,
-  "selections": [
-    (v2/*: any*/),
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "title",
-      "storageKey": null
-    },
-    (v1/*: any*/)
-  ],
-  "storageKey": null
 };
 return {
   "fragment": {
@@ -127,8 +97,7 @@ return {
               }
             ],
             "storageKey": null
-          },
-          (v3/*: any*/)
+          }
         ],
         "storageKey": "pageLayoutById(id:\"home\")"
       }
@@ -177,7 +146,6 @@ return {
             ],
             "storageKey": null
           },
-          (v3/*: any*/),
           (v2/*: any*/)
         ],
         "storageKey": "pageLayoutById(id:\"home\")"
@@ -185,16 +153,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "69d8474aca463cb25c0aae53ae079d5b",
+    "cacheID": "a5bc8ac01323fcfc7d5cdf87dffb97e9",
     "id": null,
     "metadata": {},
     "name": "AboutPageQuery",
     "operationKind": "query",
-    "text": "query AboutPageQuery {\n  layout: pageLayoutById(id: \"home\") {\n    images {\n      ...Page_data\n      url\n      id\n    }\n    seoBoxes {\n      id\n      title\n      url\n    }\n    id\n  }\n}\n\nfragment Page_data on ImageObject {\n  url\n  photographer\n  photographerUrl\n}\n"
+    "text": "query AboutPageQuery {\n  layout: pageLayoutById(id: \"home\") {\n    images {\n      ...Page_data\n      url\n      id\n    }\n    id\n  }\n}\n\nfragment Page_data on ImageObject {\n  url\n  photographer\n  photographerUrl\n}\n"
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'c64370f88a87826f5abcf6c45badb4c9';
+(node/*: any*/).hash = 'b8c3364811482c18432b1b135116c124';
 
 module.exports = node;

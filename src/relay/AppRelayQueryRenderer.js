@@ -1,12 +1,12 @@
 import React, {useContext} from 'react';
 import {QueryRenderer, ReactRelayContext} from 'react-relay';
-import {AppRelayContext} from "./AppRelayContext";
+import {getEnvironment} from "./environment";
 import {relayFetchedQueries} from "./getRelayInitialProps";
 import {createOperationDescriptor, getRequest} from "relay-runtime";
 
 export const AppRelayQueryRenderer = (props) => {
 
-    const {environment} = useContext(AppRelayContext);
+    const environment = getEnvironment();
 
     if (relayFetchedQueries.find(x => x === props.query.params.cacheID)) {
 
@@ -17,8 +17,6 @@ export const AppRelayQueryRenderer = (props) => {
         const operation = createOperationDescriptor(query, props.variables || {});
         const rendererProps = environment.lookup(operation.fragment).data;
 
-        console.log("operation", operation);
-        console.log("rendererPropsrendererProps", rendererProps, environment.lookup(operation.fragment));
         if (rendererProps) {
             return (
                 <ReactRelayContext.Provider

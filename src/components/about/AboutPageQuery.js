@@ -7,11 +7,6 @@ export default graphql`
                 ...Page_data
                 url
             }
-            seoBoxes {
-                id
-                title
-                url
-            }
         }
     }
 `;
